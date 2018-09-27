@@ -1,0 +1,241 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.1'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+project(':external:calendar') {
+    apply plugin: 'android-library'
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+                main {
+                    manifest.srcFile 'AndroidManifest.xml'
+                    java.srcDirs = ['src']
+                    resources.srcDirs = ['src']
+                    aidl.srcDirs = ['src']
+                    renderscript.srcDirs = ['src']
+                    res.srcDirs = ['res']
+                    assets.srcDirs = ['assets']
+            }
+
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+project(':external:colorpicker') {
+    apply plugin: 'android-library'
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+                main {
+                    manifest.srcFile 'AndroidManifest.xml'
+                    java.srcDirs = ['src']
+                    resources.srcDirs = ['src']
+                    aidl.srcDirs = ['src']
+                    renderscript.srcDirs = ['src']
+                    res.srcDirs = ['res']
+                    assets.srcDirs = ['assets']
+            }
+        }
+    }
+}
+
+project(':external:datetimepicker') {
+    apply plugin: 'android-library'
+
+    dependencies {
+        compile 'com.android.support:support-v4:25.3.1'
+    }
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+                main {
+                    manifest.srcFile 'AndroidManifest.xml'
+                    java.srcDirs = ['src']
+                    resources.srcDirs = ['src']
+                    aidl.srcDirs = ['src']
+                    renderscript.srcDirs = ['src']
+                    res.srcDirs = ['res']
+                    assets.srcDirs = ['assets']
+            }
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+project(':external:timezonepicker') {
+    apply plugin: 'android-library'
+
+    dependencies {
+        compile 'com.android.support:support-v4:25.3.1'
+    }
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+                main {
+                    manifest.srcFile 'AndroidManifest.xml'
+                    java.srcDirs = ['src']
+                    resources.srcDirs = ['src']
+                    aidl.srcDirs = ['src']
+                    renderscript.srcDirs = ['src']
+                    res.srcDirs = ['res']
+            }
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+project(':external:chips') {
+    apply plugin: 'android-library'
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.1'
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 25
+        }
+
+        sourceSets {
+                main {
+                    manifest.srcFile 'AndroidManifest.xml'
+                    java.srcDirs = ['src']
+                    resources.srcDirs = ['src']
+                    aidl.srcDirs = ['src']
+                    renderscript.srcDirs = ['src']
+                    res.srcDirs = ['res']
+                    assets.srcDirs = ['assets']
+            }
+        }
+
+
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+apply plugin: 'com.android.application'
+
+dependencies {
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile project(':external:calendar')
+    compile project(':external:colorpicker')
+    compile project(':external:datetimepicker')
+    compile project(':external:timezonepicker')
+    compile project(':external:chips')
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.1'
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 25
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+    sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src', 'external/ex/common/java'] // NOTE: this includes external/ex/common/java!
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+        }
+    }
+
+    /*
+     * To sign release build, create file gradle.properties in ~/.gradle/ with this content:
+     *
+     * signingStoreLocation=/home/key.store
+     * signingStorePassword=xxx
+     * signingKeyAlias=alias
+     * signingKeyPassword=xxx
+     */
+    if (project.hasProperty('signingStoreLocation') &&
+            project.hasProperty('signingStorePassword') &&
+            project.hasProperty('signingKeyAlias') &&
+            project.hasProperty('signingKeyPassword')) {
+        println "Found sign properties in gradle.properties! Signing build…"
+        
+        signingConfigs {
+            release {
+                storeFile file(signingStoreLocation)
+                storePassword signingStorePassword
+                keyAlias signingKeyAlias
+                keyPassword signingKeyPassword
+            }
+        }
+
+        buildTypes.release.signingConfig = signingConfigs.release
+    } else {
+        buildTypes.release.signingConfig = null
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
