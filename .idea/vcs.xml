@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/external/calendar" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/external/chips" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/external/colorpicker" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/external/datetimepicker" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/external/ex" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/external/timezonepicker" vcs="Git" />
   </component>
 </project>

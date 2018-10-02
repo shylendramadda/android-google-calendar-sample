@@ -17,10 +17,6 @@
           package="com.android.ex.chips"
           android:versionCode="1">
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
-
     <application />
 
 </manifest>

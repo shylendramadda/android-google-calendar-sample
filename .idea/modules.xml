@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Etar-Calendar.iml" filepath="$PROJECT_DIR$/.idea/Etar-Calendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GoogleCalendarSample.iml" filepath="$PROJECT_DIR$/GoogleCalendarSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/external/calendar/calendar.iml" filepath="$PROJECT_DIR$/external/calendar/calendar.iml" />
       <module fileurl="file://$PROJECT_DIR$/external/chips/chips.iml" filepath="$PROJECT_DIR$/external/chips/chips.iml" />
       <module fileurl="file://$PROJECT_DIR$/external/colorpicker/colorpicker.iml" filepath="$PROJECT_DIR$/external/colorpicker/colorpicker.iml" />

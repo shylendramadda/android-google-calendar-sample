@@ -1,15 +1,19 @@
 buildscript {
     repositories {
+        mavenLocal()
+        google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:3.2.0'
     }
 }
 
 allprojects {
     repositories {
+        mavenLocal()
+        google()
         jcenter()
     }
 }
@@ -18,12 +22,12 @@ project(':external:calendar') {
     apply plugin: 'android-library'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 28
+        buildToolsVersion '28.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 28
         }
 
         sourceSets {
@@ -49,12 +53,12 @@ project(':external:colorpicker') {
     apply plugin: 'android-library'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 28
+        buildToolsVersion '28.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 28
         }
 
         sourceSets {
@@ -75,16 +79,16 @@ project(':external:datetimepicker') {
     apply plugin: 'android-library'
 
     dependencies {
-        compile 'com.android.support:support-v4:25.3.1'
+        implementation 'com.android.support:support-v4:28.0.0'
     }
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 28
+        buildToolsVersion '28.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 28
         }
 
         sourceSets {
@@ -109,16 +113,16 @@ project(':external:timezonepicker') {
     apply plugin: 'android-library'
 
     dependencies {
-        compile 'com.android.support:support-v4:25.3.1'
+        implementation 'com.android.support:support-v4:28.0.0'
     }
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 28
+        buildToolsVersion '28.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 28
         }
 
         sourceSets {
@@ -142,12 +146,12 @@ project(':external:chips') {
     apply plugin: 'android-library'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.1'
+        compileSdkVersion 28
+        buildToolsVersion '28.0.2'
 
         defaultConfig {
             minSdkVersion 19
-            targetSdkVersion 25
+            targetSdkVersion 28
         }
 
         sourceSets {
@@ -172,22 +176,35 @@ project(':external:chips') {
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile project(':external:calendar')
-    compile project(':external:colorpicker')
-    compile project(':external:datetimepicker')
-    compile project(':external:timezonepicker')
-    compile project(':external:chips')
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation project(':external:calendar')
+    implementation project(':external:colorpicker')
+    implementation project(':external:datetimepicker')
+    implementation project(':external:timezonepicker')
+    implementation project(':external:chips')
 }
 
+task deleteJar(type: Delete) {
+    delete 'libs/jars/calendarlib.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/debug/')
+    into('libs/jars/')
+    include('classes.jar')
+    rename('classes.jar', 'calendarlib.jar')
+}
+
+createJar.dependsOn(deleteJar, build)
+
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 28
     }
 
     useLibrary 'org.apache.http.legacy'

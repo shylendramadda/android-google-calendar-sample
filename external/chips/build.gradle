@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    compile findDependency(':support-v4', 'com.android.support:support-v4:23.3.+')
+    implementation findDependency(':support-v4', 'com.android.support:support-v4:23.3.+')
 }
 
 Dependency findDependency(String projectName, String moduleName) {

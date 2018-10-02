@@ -18,10 +18,9 @@
 */
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ws.xsoh.etar"
-    android:installLocation="auto"
-    android:versionCode="14"
-    android:versionName="1.0.12">
+    android:installLocation="auto">
 <!--         android:sharedUserLabel="@string/app_label"> -->
 
     <!--
@@ -84,7 +83,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:scheme="http"
+                tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/event" />
